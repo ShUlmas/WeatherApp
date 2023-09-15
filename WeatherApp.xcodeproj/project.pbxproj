@@ -17,6 +17,18 @@
 		2DF6387E2AB45230004A8DCB /* CurrentWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF6387D2AB45230004A8DCB /* CurrentWeatherCollectionViewCell.swift */; };
 		2DF638802AB4526E004A8DCB /* WeeklyWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF6387F2AB4526E004A8DCB /* WeeklyWeatherCollectionViewCell.swift */; };
 		2DF638822AB4528C004A8DCB /* HourlyWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF638812AB4528C004A8DCB /* HourlyWeatherCollectionViewCell.swift */; };
+		2DF638872AB473D9004A8DCB /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF638862AB473D9004A8DCB /* Weather.swift */; };
+		2DF638942AB4D12B004A8DCB /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF638892AB4D12B004A8DCB /* Rubik-Black.ttf */; };
+		2DF638952AB4D12B004A8DCB /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF6388A2AB4D12B004A8DCB /* Rubik-Light.ttf */; };
+		2DF638962AB4D12B004A8DCB /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF6388B2AB4D12B004A8DCB /* Rubik-BoldItalic.ttf */; };
+		2DF638972AB4D12B004A8DCB /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF6388C2AB4D12B004A8DCB /* Rubik-Medium.ttf */; };
+		2DF638982AB4D12B004A8DCB /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF6388D2AB4D12B004A8DCB /* Rubik-Italic.ttf */; };
+		2DF638992AB4D12B004A8DCB /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF6388E2AB4D12B004A8DCB /* Rubik-MediumItalic.ttf */; };
+		2DF6389A2AB4D12B004A8DCB /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF6388F2AB4D12B004A8DCB /* Rubik-Bold.ttf */; };
+		2DF6389B2AB4D12B004A8DCB /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF638902AB4D12B004A8DCB /* Rubik-Regular.ttf */; };
+		2DF6389C2AB4D12B004A8DCB /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF638912AB4D12B004A8DCB /* Rubik-BlackItalic.ttf */; };
+		2DF6389D2AB4D12B004A8DCB /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DF638922AB4D12B004A8DCB /* SIL Open Font License.txt */; };
+		2DF6389E2AB4D12B004A8DCB /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF638932AB4D12B004A8DCB /* Rubik-LightItalic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +44,18 @@
 		2DF6387D2AB45230004A8DCB /* CurrentWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DF6387F2AB4526E004A8DCB /* WeeklyWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DF638812AB4528C004A8DCB /* HourlyWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DF638862AB473D9004A8DCB /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		2DF638892AB4D12B004A8DCB /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
+		2DF6388A2AB4D12B004A8DCB /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		2DF6388B2AB4D12B004A8DCB /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		2DF6388C2AB4D12B004A8DCB /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		2DF6388D2AB4D12B004A8DCB /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		2DF6388E2AB4D12B004A8DCB /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
+		2DF6388F2AB4D12B004A8DCB /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		2DF638902AB4D12B004A8DCB /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		2DF638912AB4D12B004A8DCB /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
+		2DF638922AB4D12B004A8DCB /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
+		2DF638932AB4D12B004A8DCB /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +88,7 @@
 		2DDC24F32AB327F10091D3EB /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				2DF638832AB46602004A8DCB /* Resources */,
 				2DDC250D2AB32DB20091D3EB /* Managers */,
 				2DDC250A2AB328310091D3EB /* ViewModels */,
 				2DDC25092AB328280091D3EB /* Models */,
@@ -71,7 +96,6 @@
 				2DF6387A2AB42771004A8DCB /* Controllers */,
 				2DDC24F42AB327F10091D3EB /* AppDelegate.swift */,
 				2DDC24F62AB327F10091D3EB /* SceneDelegate.swift */,
-				2DDC24FD2AB327F20091D3EB /* Assets.xcassets */,
 				2DDC24FF2AB327F20091D3EB /* LaunchScreen.storyboard */,
 				2DDC25022AB327F20091D3EB /* Info.plist */,
 			);
@@ -83,8 +107,8 @@
 			children = (
 				2DF6387B2AB4279C004A8DCB /* HomeView.swift */,
 				2DF6387D2AB45230004A8DCB /* CurrentWeatherCollectionViewCell.swift */,
-				2DF6387F2AB4526E004A8DCB /* WeeklyWeatherCollectionViewCell.swift */,
 				2DF638812AB4528C004A8DCB /* HourlyWeatherCollectionViewCell.swift */,
+				2DF6387F2AB4526E004A8DCB /* WeeklyWeatherCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -92,6 +116,7 @@
 		2DDC25092AB328280091D3EB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2DF638862AB473D9004A8DCB /* Weather.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,6 +142,33 @@
 				2DDC250B2AB3284D0091D3EB /* HomeViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2DF638832AB46602004A8DCB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2DF638882AB4D10D004A8DCB /* Fonts */,
+				2DDC24FD2AB327F20091D3EB /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2DF638882AB4D10D004A8DCB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2DF638892AB4D12B004A8DCB /* Rubik-Black.ttf */,
+				2DF638912AB4D12B004A8DCB /* Rubik-BlackItalic.ttf */,
+				2DF6388F2AB4D12B004A8DCB /* Rubik-Bold.ttf */,
+				2DF6388B2AB4D12B004A8DCB /* Rubik-BoldItalic.ttf */,
+				2DF6388D2AB4D12B004A8DCB /* Rubik-Italic.ttf */,
+				2DF6388A2AB4D12B004A8DCB /* Rubik-Light.ttf */,
+				2DF638932AB4D12B004A8DCB /* Rubik-LightItalic.ttf */,
+				2DF6388C2AB4D12B004A8DCB /* Rubik-Medium.ttf */,
+				2DF6388E2AB4D12B004A8DCB /* Rubik-MediumItalic.ttf */,
+				2DF638902AB4D12B004A8DCB /* Rubik-Regular.ttf */,
+				2DF638922AB4D12B004A8DCB /* SIL Open Font License.txt */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +229,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DF638962AB4D12B004A8DCB /* Rubik-BoldItalic.ttf in Resources */,
+				2DF6389A2AB4D12B004A8DCB /* Rubik-Bold.ttf in Resources */,
+				2DF638942AB4D12B004A8DCB /* Rubik-Black.ttf in Resources */,
+				2DF6389D2AB4D12B004A8DCB /* SIL Open Font License.txt in Resources */,
+				2DF6389B2AB4D12B004A8DCB /* Rubik-Regular.ttf in Resources */,
+				2DF638952AB4D12B004A8DCB /* Rubik-Light.ttf in Resources */,
+				2DF6389C2AB4D12B004A8DCB /* Rubik-BlackItalic.ttf in Resources */,
+				2DF6389E2AB4D12B004A8DCB /* Rubik-LightItalic.ttf in Resources */,
+				2DF638992AB4D12B004A8DCB /* Rubik-MediumItalic.ttf in Resources */,
+				2DF638972AB4D12B004A8DCB /* Rubik-Medium.ttf in Resources */,
+				2DF638982AB4D12B004A8DCB /* Rubik-Italic.ttf in Resources */,
 				2DDC25012AB327F20091D3EB /* LaunchScreen.storyboard in Resources */,
 				2DDC24FE2AB327F20091D3EB /* Assets.xcassets in Resources */,
 			);
@@ -193,6 +256,7 @@
 				2DF638802AB4526E004A8DCB /* WeeklyWeatherCollectionViewCell.swift in Sources */,
 				2DF638822AB4528C004A8DCB /* HourlyWeatherCollectionViewCell.swift in Sources */,
 				2DDC24F72AB327F10091D3EB /* SceneDelegate.swift in Sources */,
+				2DF638872AB473D9004A8DCB /* Weather.swift in Sources */,
 				2DDC250C2AB3284D0091D3EB /* HomeViewController.swift in Sources */,
 				2DF6387E2AB45230004A8DCB /* CurrentWeatherCollectionViewCell.swift in Sources */,
 				2DF6387C2AB4279C004A8DCB /* HomeView.swift in Sources */,

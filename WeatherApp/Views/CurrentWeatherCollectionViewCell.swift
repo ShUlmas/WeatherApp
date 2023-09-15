@@ -10,15 +10,175 @@ import UIKit
 class CurrentWeatherCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "CurrentWeatherCollectionViewCell"
     
+    //MARK: - Properties
+    
+    private let regionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Tashkent"
+        label.font = UIFont(name: "Rubik-Bold", size: 22)
+        label.textColor = .white
+        return label
+    }()
+    private let dateLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Sun, 7 Aug"
+        label.font = UIFont(name: "Rubik-Medium", size: 14)
+        label.textColor = .white
+        return label
+    }()
+    private let conditionImage: UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = UIImage(systemName: "sun.min")
+        imgView.tintColor = .white
+        return imgView
+    }()
+    
+    private let tempLabel: UILabel = {
+        let label = UILabel()
+        label.text = "30 C°"
+        label.font = UIFont(name: "Rubik-Bold", size: 30)
+        label.textColor = .white
+        return label
+    }()
+    
+    private let conditionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Clear"
+        label.font = UIFont(name: "Rubik-Regular", size: 12)
+        label.textColor = .white
+        return label
+    }()
+    
+    private lazy var infosStack: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 24
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    private let windInfoView = ImageAndLabelView(imageName: "wind", info: "10km/h")
+    private let rainInfoView = ImageAndLabelView(imageName: "drop", info: "50%")
+    private let minRainInfoView = ImageAndLabelView(imageName: "umbrella", info: "13%")
+    
+    
+    //MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
         contentView.layer.cornerRadius = 12
+        
+        setUpConstraints()
     }
+    
+    //MARK: - Function
+    func setUpConstraints() {
+        contentView.addSubviews(regionLabel, dateLabel, conditionImage, conditionLabel, tempLabel, infosStack)
+        infosStack.addArrangedSubview(windInfoView)
+        infosStack.addArrangedSubview(rainInfoView)
+        infosStack.addArrangedSubview(minRainInfoView)
+        
+        regionLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        conditionImage.translatesAutoresizingMaskIntoConstraints = false
+        conditionLabel.translatesAutoresizingMaskIntoConstraints = false
+        tempLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            regionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            regionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12),
+            
+            dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            dateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12),
+            
+            conditionImage.topAnchor.constraint(equalTo: regionLabel.bottomAnchor, constant: 20),
+            conditionImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12),
+            conditionImage.widthAnchor.constraint(equalToConstant: 120),
+            conditionImage.heightAnchor.constraint(equalToConstant: 120),
+            
+            tempLabel.centerYAnchor.constraint(equalTo: conditionImage.centerYAnchor),
+            tempLabel.leftAnchor.constraint(equalTo: conditionImage.rightAnchor, constant: 12),
+            
+            conditionLabel.leftAnchor.constraint(equalTo: tempLabel.rightAnchor, constant: 8),
+            conditionLabel.bottomAnchor.constraint(equalTo: tempLabel.bottomAnchor),
+            
+            infosStack.topAnchor.constraint(equalTo: conditionImage.bottomAnchor, constant: 20),
+            infosStack.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 12),
+            infosStack.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -12),
+            infosStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
+            
+        ])
+    }
+    
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
+}
+
+//MARK: - View for wind and rain info
+class ImageAndLabelView: UIView {
+    
+    private let iconImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "sun.haze.fill")
+        image.tintColor = .white
+        return image
+    }()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Rubik-Medium", size: 15)
+        label.textColor = .white
+        label.textAlignment = .center
+        return label
+    }()
+    
+    init(imageName: String, info: String) {
+        super.init(frame: .zero)
+        self.iconImage.image = UIImage(systemName: imageName)
+        self.label.text = info
+        translatesAutoresizingMaskIntoConstraints = false
+        layer.cornerRadius = 12
+        backgroundColor = #colorLiteral(red: 0.3647058824, green: 0.462745098, blue: 0.662745098, alpha: 1)
+        setUpConstraints()
+    }
+    
+    func setUpConstraints() {
+        addSubviews(iconImage, label)
+        iconImage.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            iconImage.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            iconImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+            iconImage.widthAnchor.constraint(equalToConstant: 40),
+            iconImage.heightAnchor.constraint(equalToConstant: 40),
+            
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
+            label.rightAnchor.constraint(equalTo: rightAnchor, constant: -12),
+            label.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
+        ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+
+//MARK: -  Extension UIView
+extension UIView {
+    func addSubviews(_ views: UIView...) {
+        for view in views {
+            self.addSubview(view)
+        }
+    }
 }

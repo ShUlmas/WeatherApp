@@ -45,9 +45,13 @@ class NetworkManager {
                     // Parse and handle the data
                     if let data = data {
                         do {
-                            let json = try JSONSerialization.jsonObject(with: data)
-                            // Process the JSON data
-                            print(json)
+                            let decoder = JSONDecoder()
+                            decoder.keyDecodingStrategy = .convertFromSnakeCase
+                            let weather = try decoder.decode(Weather.self, from: data)
+                            print(weather.location.localtime)
+                            print(weather.location.name)
+                            print(weather.current.tempC)
+                            print(weather.forecast.forecastday[1].hour[14].tempC)
                         } catch {
                             print("Error parsing JSON: \(error.localizedDescription)")
                         }
@@ -60,7 +64,6 @@ class NetworkManager {
 
         // Start the data task
         task.resume()
-
     }
 }
 

@@ -24,13 +24,13 @@ class HomeViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.backgroundColor = .clear
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         //setupUI()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters // Set desired accuracy
         locationManager.requestWhenInUseAuthorization()
-        
         
     }
     
@@ -88,6 +88,7 @@ extension HomeViewController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
         return section
     }
     
@@ -102,10 +103,10 @@ extension HomeViewController {
                 widthDimension: .absolute(80),
                 heightDimension: .absolute(120)),
             subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 12, bottom: 0, trailing: 0)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 20)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 16)
         section.orthogonalScrollingBehavior = .continuous
         return section
     }
@@ -121,10 +122,10 @@ extension HomeViewController {
                 widthDimension: .fractionalWidth(1),
                 heightDimension: .absolute(66)),
             subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 20, bottom: 0, trailing: 20)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 16)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
         
         return section
     }
@@ -149,7 +150,7 @@ extension HomeViewController: CLLocationManagerDelegate {
             let long = location.coordinate.longitude
             
             // Use the location data as needed
-            NetworkManager.shared.getWeatherWithCoordinate(lat: lat, long: long)
+//            NetworkManager.shared.getWeatherWithCoordinate(lat: lat, long: long)
             print(lat)
             print(long)
         }
@@ -185,16 +186,28 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrentWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? CurrentWeatherCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.layer.shadowColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
+            cell.layer.shadowRadius = 5
+            cell.layer.shadowOpacity = 1
+            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
             return cell
         } else if indexPath.section == 1 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? HourlyWeatherCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.layer.shadowColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
+            cell.layer.shadowRadius = 5
+            cell.layer.shadowOpacity = 1
+            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeeklyWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? WeeklyWeatherCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            cell.layer.shadowColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
+            cell.layer.shadowRadius = 5
+            cell.layer.shadowOpacity = 1
+            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
             return cell
         }
     }

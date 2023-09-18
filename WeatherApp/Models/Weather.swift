@@ -27,6 +27,9 @@ struct Location: Codable {
 struct Current: Codable {
     let tempC: Double // 26.0,
     let condition: Condition
+    let windKph: Double
+    let humidity: Double
+    let cloud: Double
 }
 
 struct Forecast: Codable {
@@ -50,6 +53,7 @@ struct Day: Codable {
 }
 
 struct Hour: Codable {
+    let time: String
     let tempC: Double
     let isDay: Int
     let condition: Condition
@@ -67,3 +71,5 @@ struct Condition: Codable {
     let text: String
     let icon: String
 }
+
+

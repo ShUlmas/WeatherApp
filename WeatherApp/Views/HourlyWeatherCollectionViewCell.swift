@@ -45,7 +45,7 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
+        contentView.backgroundColor = .systemIndigo
         contentView.layer.cornerRadius = 12
         
         setUpUI()
@@ -70,6 +70,12 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
             iconImage.widthAnchor.constraint(equalToConstant: 40),
             iconImage.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    func configure(with model: HourlyWeather) {
+        hourLabel.text = model.hour
+        iconImage.image = UIImage(systemName: "cloud")
+        tempLabel.text = "\(model.tempC) C°"
     }
     
     required init?(coder: NSCoder) {

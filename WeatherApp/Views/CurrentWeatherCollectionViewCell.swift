@@ -61,16 +61,15 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
     
     private let windInfoView = ImageAndLabelView(imageName: "wind", info: "10km/h")
     private let rainInfoView = ImageAndLabelView(imageName: "drop", info: "50%")
-    private let minRainInfoView = ImageAndLabelView(imageName: "umbrella", info: "13%")
+    private let cloudInfoView = ImageAndLabelView(imageName: "cloud", info: "13%")
     
     
     //MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
+        contentView.backgroundColor = .systemIndigo
         contentView.layer.cornerRadius = 12
-        
         setUpConstraints()
     }
     
@@ -79,7 +78,7 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
         contentView.addSubviews(regionLabel, dateLabel, conditionImage, conditionLabel, tempLabel, infosStack)
         infosStack.addArrangedSubview(windInfoView)
         infosStack.addArrangedSubview(rainInfoView)
-        infosStack.addArrangedSubview(minRainInfoView)
+        infosStack.addArrangedSubview(cloudInfoView)
         
         regionLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -113,6 +112,15 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    func configure(with model: CurrentWeather) {
+        regionLabel.text = model.regionName
+        dateLabel.text = model.date
+        tempLabel.text = model.temp
+        conditionLabel.text = model.condition
+        windInfoView.configure(infoText: model.wind)
+        rainInfoView.configure(infoText: model.humidity)
+        cloudInfoView.configure(infoText: model.cloud)
+    }
     
     
     required init?(coder: NSCoder) {
@@ -128,14 +136,14 @@ class ImageAndLabelView: UIView {
     private let iconImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "sun.haze.fill")
-        image.tintColor = .white
+        image.tintColor = .systemIndigo
         return image
     }()
     
     private let label: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Rubik-Medium", size: 15)
-        label.textColor = .white
+        label.textColor = .systemIndigo
         label.textAlignment = .center
         return label
     }()
@@ -146,7 +154,7 @@ class ImageAndLabelView: UIView {
         self.label.text = info
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 12
-        backgroundColor = #colorLiteral(red: 0.3647058824, green: 0.462745098, blue: 0.662745098, alpha: 1)
+        backgroundColor = .white
         setUpConstraints()
     }
     
@@ -165,6 +173,10 @@ class ImageAndLabelView: UIView {
             label.rightAnchor.constraint(equalTo: rightAnchor, constant: -12),
             label.leftAnchor.constraint(equalTo: leftAnchor, constant: 12),
         ])
+    }
+    
+    func configure(infoText: String) {
+        label.text = infoText
     }
     
     required init?(coder: NSCoder) {

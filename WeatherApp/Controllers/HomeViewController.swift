@@ -9,33 +9,65 @@ import UIKit
 import CoreLocation
 
 class HomeViewController: UIViewController {
-    //MARK: - Properties
+    
+    //MARK: - PROPERTIES
     var collectionView: UICollectionView?
     
     let locationManager = CLLocationManager()
+    let searchBar = UISearchBar()
     
-    //MARK: - View Didload
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let collectionView = createCollectionView()
-        self.collectionView = collectionView
-        collectionView.showsVerticalScrollIndicator = false
-        setUpCollectionView()
-        
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .clear
-        
-        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        //setupUI()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters // Set desired accuracy
-        locationManager.requestWhenInUseAuthorization()
+    let currentWeatherViewModel = CurrentWeatherCVCViewModel()
+    let hourlyWeatherViewModel = HourlyWeatherCVCViewModel()
+    let weeklyWeatherViewModel = WeeklyWeatherCVCViewModel()
+       
+    var manager = NetworkManager()
+    
+    //MARK: - VIEW WILL APPEAR
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hourlyWeatherViewModel.getHourlyWeather()
+        weeklyWeatherViewModel.getWeeklyWeather()
+        currentWeatherViewModel.getCurrentWeather()
         
     }
     
-    //MARK: - Functions
+    //MARK: - VIEW DIDLOAD
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        setUpNavigationBar()
+        let collectionView = CreateCollectionView.shared.createCollectionView()
+        self.collectionView = collectionView
+        collectionView.showsVerticalScrollIndicator = false
+        setUpCollectionView()
+        collectionView.backgroundColor = .clear
+
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        locationManager.delegate = self
+        
+        //Location manager
+        
+        
+        setUpSearchbar()
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters // Set desired accuracy
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
+    }
+    
+    //MARK: - FUNCTIONS
+    
+    private func setUpSearchbar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "Search"
+        navigationItem.titleView = searchBar
+    }
+    
     private func setUpCollectionView() {
+        
         guard let collectionView = collectionView else {
             return
         }
@@ -47,87 +79,30 @@ class HomeViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
-            
         ])
     }
-}
-
-//MARK: - ADD CollectionViewCompositionalLayout
-
-extension HomeViewController {
-    //MARK: - CreateCollectionView
     
-    private func createCollectionView() -> UICollectionView {
-        let layout = UICollectionViewCompositionalLayout { [self] sectionIndex, _ in
-            switch sectionIndex {
-            case 0 :
-                return currentWeatherInfoSection()
-            case 1 :
-                return hourlyWeatherInfoSection()
-            default:
-                return weeklyWeatherInfoSection()
-            }
+    private func setUpNavigationBar() {
+        
+        let locationButton = UIBarButtonItem(image: UIImage(systemName: "location.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .done, target: self, action: #selector(lcoationButtonTapped))
+        locationButton.tintColor = .systemIndigo
+        navigationItem.leftBarButtonItem = locationButton
+        
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)), style: .done, target: self, action: #selector(searchButtonTapped))
+        searchButton.tintColor = .systemIndigo
+        navigationItem.rightBarButtonItem = searchButton
+    }
+    @objc
+    func lcoationButtonTapped() {
+        locationManager.requestLocation()
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
         }
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        collectionView.register(CurrentWeatherCollectionViewCell.self, forCellWithReuseIdentifier: CurrentWeatherCollectionViewCell.cellIdentifier)
-        collectionView.register(HourlyWeatherCollectionViewCell.self, forCellWithReuseIdentifier: HourlyWeatherCollectionViewCell.cellIdentifier)
-        collectionView.register(WeeklyWeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeeklyWeatherCollectionViewCell.cellIdentifier)
-        
-        return collectionView
-    }
-    //MARK: - Create section
-    func currentWeatherInfoSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(300))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0)
-        return section
     }
     
-    func hourlyWeatherInfoSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1)))
-        
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .absolute(80),
-                heightDimension: .absolute(120)),
-            subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 0)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 16)
-        section.orthogonalScrollingBehavior = .continuous
-        return section
-    }
-    
-    func weeklyWeatherInfoSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1)))
-        
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(66)),
-            subitems: [item])
-        group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 16)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
-        
-        return section
+    @objc
+    func searchButtonTapped() {
+        print("search")
     }
 }
 
@@ -147,12 +122,10 @@ extension HomeViewController: CLLocationManagerDelegate {
         if let location = locations.last {
             // You can access the current location via the 'location' variable
             let lat = location.coordinate.latitude
-            let long = location.coordinate.longitude
+            let lon = location.coordinate.longitude
             
-            // Use the location data as needed
-//            NetworkManager.shared.getWeatherWithCoordinate(lat: lat, long: long)
-            print(lat)
-            print(long)
+            UserDefaults.standard.set(lat, forKey: "latitude")
+            UserDefaults.standard.set(lon, forKey: "longitude")
         }
     }
     
@@ -163,17 +136,16 @@ extension HomeViewController: CLLocationManagerDelegate {
 }
 
 
-//MARK: -  UICollectionViewDelegate, UICollectionViewDataSource
+//MARK: -  UICollectionViewDataSource
 
-
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else if section == 1 {
-            return 24
+            return hourlyWeatherViewModel.hourlyWeather.count
         } else {
-            return 10
+            return weeklyWeatherViewModel.weeklyWeather.count
         }
     }
     
@@ -186,29 +158,41 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrentWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? CurrentWeatherCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.layer.shadowColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
-            cell.layer.shadowRadius = 5
-            cell.layer.shadowOpacity = 1
-            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            let model = currentWeatherViewModel.currentWeather
+            cell.configure(with: model)
+            
             return cell
         } else if indexPath.section == 1 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? HourlyWeatherCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.layer.shadowColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
-            cell.layer.shadowRadius = 5
-            cell.layer.shadowOpacity = 1
-            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            let model = hourlyWeatherViewModel.hourlyWeather[indexPath.item]
+            cell.configure(with: model)
+            
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeeklyWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? WeeklyWeatherCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.layer.shadowColor = #colorLiteral(red: 0, green: 0.2745098039, blue: 0.5294117647, alpha: 1)
-            cell.layer.shadowRadius = 5
-            cell.layer.shadowOpacity = 1
-            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+            let model = weeklyWeatherViewModel.weeklyWeather[indexPath.item]
+            cell.configure(model: model)
             return cell
+        }
+    }
+}
+
+//MARK: - UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
+    
+}
+
+//MARK: - Searchbar delegate
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            // Qidiruv tugaganda, qidiruv natijasini qilib ishlatishingiz mumkin
+            print("Qidiruv natijasi: \(searchText)")
         }
     }
 }

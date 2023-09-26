@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+enum WeatherSections: CaseIterable {
+    case current
+    case hourly
+    case weekly
+}

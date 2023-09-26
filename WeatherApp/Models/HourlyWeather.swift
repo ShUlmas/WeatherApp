@@ -10,6 +10,6 @@ import Foundation
 
 struct HourlyWeather {
     let hour: String
-    let icon: String
+    let iconUrl: String
     let tempC: String
 }

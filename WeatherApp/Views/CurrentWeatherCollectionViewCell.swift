@@ -16,20 +16,20 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Tashkent"
         label.font = UIFont(name: "Rubik-Bold", size: 22)
-        label.textColor = .white
+        label.textColor = .label
         return label
     }()
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.text = "Sun, 7 Aug"
         label.font = UIFont(name: "Rubik-Medium", size: 14)
-        label.textColor = .white
+        label.textColor = .label
         return label
     }()
     private let conditionImage: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(systemName: "sun.min")
-        imgView.tintColor = .white
+        imgView.tintColor = .label
         return imgView
     }()
     
@@ -37,7 +37,7 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "30 C°"
         label.font = UIFont(name: "Rubik-Bold", size: 30)
-        label.textColor = .white
+        label.textColor = .label
         return label
     }()
     
@@ -45,7 +45,7 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Clear"
         label.font = UIFont(name: "Rubik-Regular", size: 12)
-        label.textColor = .white
+        label.textColor = .label
         return label
     }()
     
@@ -68,7 +68,7 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemIndigo
+        contentView.backgroundColor = .green
         contentView.layer.cornerRadius = 12
         setUpConstraints()
     }
@@ -112,22 +112,30 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure(with model: CurrentWeather) {
-        regionLabel.text = model.regionName
-        dateLabel.text = model.date
-        tempLabel.text = model.temp
-        conditionLabel.text = model.condition
-        windInfoView.configure(infoText: model.wind)
-        rainInfoView.configure(infoText: model.humidity)
-        cloudInfoView.configure(infoText: model.cloud)
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.dateLabel.text = nil
+        self.conditionImage.image = nil
+        self.regionLabel.text = nil
+        self.tempLabel.text = nil
+        self.conditionLabel.text = nil
     }
     
-    
+    //MARK: - Configure
+    func configure(viewModel: CurrentWeatherCVCViewModel) {
+        regionLabel.text = viewModel.locationName
+        conditionLabel.text = viewModel.conditionLabel
+        conditionImage.downloaded(from: viewModel.conditionIcon)
+        dateLabel.text = viewModel.date
+        tempLabel.text = viewModel.tempC
+        windInfoView.configure(infoText: viewModel.windKph)
+        rainInfoView.configure(infoText: viewModel.humidity)
+        cloudInfoView.configure(infoText: viewModel.cloud)
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
 //MARK: - View for wind and rain info
@@ -143,7 +151,7 @@ class ImageAndLabelView: UIView {
     private let label: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Rubik-Medium", size: 15)
-        label.textColor = .systemIndigo
+        label.textColor = .label
         label.textAlignment = .center
         return label
     }()
@@ -154,7 +162,7 @@ class ImageAndLabelView: UIView {
         self.label.text = info
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 12
-        backgroundColor = .white
+        backgroundColor = .systemBackground
         setUpConstraints()
     }
     
@@ -166,8 +174,8 @@ class ImageAndLabelView: UIView {
         NSLayoutConstraint.activate([
             iconImage.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             iconImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            iconImage.widthAnchor.constraint(equalToConstant: 40),
-            iconImage.heightAnchor.constraint(equalToConstant: 40),
+            iconImage.widthAnchor.constraint(equalToConstant: 32),
+            iconImage.heightAnchor.constraint(equalToConstant: 32),
             
             label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
             label.rightAnchor.constraint(equalTo: rightAnchor, constant: -12),

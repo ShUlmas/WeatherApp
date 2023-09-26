@@ -11,5 +11,5 @@ struct WeeklyWeather {
     let date: String
     let maxMinTempC: String
     let conditionText: String
-    let conditionIcon: String
+    let conditionIconUrl: String
 }

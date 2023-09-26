@@ -24,7 +24,7 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Monday"
         label.font = UIFont(name: "Rubik-Medium", size: 17)
-        label.textColor = .white
+        label.textColor = .label
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -34,7 +34,7 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "17°/13°"
         label.font = UIFont(name: "Rubik-Bold", size: 20)
-        label.textColor = .white
+        label.textColor = .label
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -43,21 +43,10 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
     private let iconImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "cloud.drizzle")
-        image.tintColor = .white
+        image.tintColor = .label
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
-    
-//    private let conditionLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "Clear"
-//        label.font = UIFont(name: "Rubik-Bold", size: 13)
-//        label.numberOfLines = 2
-//        label.textColor = .white
-//        label.textAlignment = .left
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        return label
-//    }()
     
     private lazy var iconLabelStack: UIStackView = {
         let stackView = UIStackView()
@@ -72,7 +61,7 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemIndigo
+        contentView.backgroundColor = .blue
         contentView.layer.cornerRadius = 12
         setupUI()
     }
@@ -103,12 +92,17 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
         
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.dayLabel.text = nil
+        self.iconImage.image = nil
+        self.tempLabel.text = nil
+    }
+    
     //MARK: - Configure
     
-    func configure(model: WeeklyWeather) {
-        dayLabel.text = model.date
-        //iconImage.image = UIImage(systemName: model.conditionIcon)
-        tempLabel.text = model.maxMinTempC
+    func configure(viewModel: WeeklyWeatherCVCViewModel) {
+       
         
     }
     

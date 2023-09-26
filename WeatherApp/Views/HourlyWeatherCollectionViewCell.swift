@@ -14,7 +14,7 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "24C°"
         label.font = UIFont(name: "Rubik-Bold", size: 12)
-        label.textColor = .white
+        label.textColor = .label
         label.textAlignment = .center
         return label
     }()
@@ -22,7 +22,7 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "11:00"
         label.font = UIFont(name: "Rubik-Medium", size: 12)
-        label.textColor = .white
+        label.textColor = .label
         label.textAlignment = .center
         return label
     }()
@@ -30,7 +30,7 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
     private let iconImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(systemName: "sun.min")
-        image.tintColor = .white
+        image.tintColor = .label
         return image
     }()
     
@@ -45,7 +45,7 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .systemIndigo
+        contentView.backgroundColor = .red
         contentView.layer.cornerRadius = 12
         
         setUpUI()
@@ -72,10 +72,17 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure(with model: HourlyWeather) {
-        hourLabel.text = model.hour
-        iconImage.image = UIImage(systemName: "cloud")
-        tempLabel.text = "\(model.tempC) C°"
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.tempLabel.text = nil
+        self.hourLabel.text = nil
+        self.iconImage.image = nil
+    }
+    
+    //MARK: - Configure
+    
+    func configure(viewModel: HourlyWeatherCVCViewModel) {
+       
     }
     
     required init?(coder: NSCoder) {

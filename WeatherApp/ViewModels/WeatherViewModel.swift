@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum WeatherViewModel {
+    case current(viewModel: CurrentWeatherCVCViewModel)
+    case hourly(viewModel: [HourlyWeatherCVCViewModel])
+    case weekly(viewModel: [WeeklyWeatherCVCViewModel])
+}

@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     //MARK: - VIEW WILL APPEAR
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getWeather()
+       
     }
     
     //MARK: - VIEW DIDLOAD
@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         setupUI()
         setUpNavigationBar()
         setUpSearchbar()
-        
+        getWeather()
         
     }
     //MARK: - FUNCTIONS
@@ -37,7 +37,6 @@ class HomeViewController: UIViewController {
         LocationManager.shared.getCurrentLocation { location in
             NetworkManager.shared.getWeatherWithCoordinate(location: location) { [weak self] in
                 DispatchQueue.main.async {
-                    
                     let currentWeather = NetworkManager.shared.currentWeather
                     guard let currentWeather = currentWeather else { return }
 

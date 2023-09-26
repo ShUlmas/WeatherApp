@@ -130,7 +130,6 @@ class HomeView: UIView {
 extension HomeView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch viewModel[section] {
-            
         case .current:
             1
         case .hourly(let viewModels):
@@ -141,7 +140,7 @@ extension HomeView: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel.count
+        viewModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -149,19 +148,19 @@ extension HomeView: UICollectionViewDataSource {
         switch viewModel[indexPath.section] {
         case .current(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrentWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? CurrentWeatherCollectionViewCell else {
-                return UICollectionViewCell()
+                fatalError("unsupported")
             }
             cell.configure(viewModel: viewModel)
             return cell
         case .hourly(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HourlyWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? HourlyWeatherCollectionViewCell else {
-                return UICollectionViewCell()
+                fatalError("unsupported")
             }
             cell.configure(viewModel: viewModels[indexPath.item])
             return cell
         case .weekly(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeeklyWeatherCollectionViewCell.cellIdentifier, for: indexPath) as? WeeklyWeatherCollectionViewCell else {
-                return UICollectionViewCell()
+                fatalError("unsupported")
             }
             cell.configure(viewModel: viewModels[indexPath.item])
             return cell

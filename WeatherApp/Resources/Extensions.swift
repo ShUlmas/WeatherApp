@@ -50,6 +50,15 @@ extension Date {
     }
 }
 
+//MARK: -  Extension UIView
+extension UIView {
+    func addSubviews(_ views: UIView...) {
+        for view in views {
+            self.addSubview(view)
+        }
+    }
+}
+
 //MARK: - DOWNLOAD IMAGE
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {

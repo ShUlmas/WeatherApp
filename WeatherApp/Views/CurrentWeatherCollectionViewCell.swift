@@ -192,13 +192,3 @@ class ImageAndLabelView: UIView {
     }
     
 }
-
-
-//MARK: -  Extension UIView
-extension UIView {
-    func addSubviews(_ views: UIView...) {
-        for view in views {
-            self.addSubview(view)
-        }
-    }
-}

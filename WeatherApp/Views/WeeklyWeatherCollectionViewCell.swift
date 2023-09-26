@@ -100,10 +100,10 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Configure
-    
     func configure(viewModel: WeeklyWeatherCVCViewModel) {
-       
-        
+        tempLabel.text = viewModel.tempC
+        dayLabel.text = viewModel.date
+        iconImage.downloaded(from: viewModel.iconUrl)
     }
     
     required init?(coder: NSCoder) {

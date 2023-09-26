@@ -32,8 +32,6 @@
 		2DF6389C2AB4D12B004A8DCB /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF638912AB4D12B004A8DCB /* Rubik-BlackItalic.ttf */; };
 		2DF6389D2AB4D12B004A8DCB /* SIL Open Font License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2DF638922AB4D12B004A8DCB /* SIL Open Font License.txt */; };
 		2DF6389E2AB4D12B004A8DCB /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DF638932AB4D12B004A8DCB /* Rubik-LightItalic.ttf */; };
-		2DF638A02AB562F5004A8DCB /* CreateCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF6389F2AB562F5004A8DCB /* CreateCollectionView.swift */; };
-		2DF638A52AB575C3004A8DCB /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF638A42AB575C3004A8DCB /* HomeViewViewModel.swift */; };
 		2DF638A72AB575E6004A8DCB /* CurrentWeatherCVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF638A62AB575E5004A8DCB /* CurrentWeatherCVCViewModel.swift */; };
 		2DF638A92AB575F8004A8DCB /* HourlyWeatherCVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF638A82AB575F8004A8DCB /* HourlyWeatherCVCViewModel.swift */; };
 		2DF638AB2AB5760A004A8DCB /* WeeklyWeatherCVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF638AA2AB5760A004A8DCB /* WeeklyWeatherCVCViewModel.swift */; };
@@ -71,8 +69,6 @@
 		2DF638912AB4D12B004A8DCB /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
 		2DF638922AB4D12B004A8DCB /* SIL Open Font License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
 		2DF638932AB4D12B004A8DCB /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
-		2DF6389F2AB562F5004A8DCB /* CreateCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCollectionView.swift; sourceTree = "<group>"; };
-		2DF638A42AB575C3004A8DCB /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
 		2DF638A62AB575E5004A8DCB /* CurrentWeatherCVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherCVCViewModel.swift; sourceTree = "<group>"; };
 		2DF638A82AB575F8004A8DCB /* HourlyWeatherCVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCVCViewModel.swift; sourceTree = "<group>"; };
 		2DF638AA2AB5760A004A8DCB /* WeeklyWeatherCVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWeatherCVCViewModel.swift; sourceTree = "<group>"; };
@@ -128,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				2D805D8D2AC1CE0900274731 /* HomeView.swift */,
-				2DF6389F2AB562F5004A8DCB /* CreateCollectionView.swift */,
 				2DF6387D2AB45230004A8DCB /* CurrentWeatherCollectionViewCell.swift */,
 				2DF638812AB4528C004A8DCB /* HourlyWeatherCollectionViewCell.swift */,
 				2DF6387F2AB4526E004A8DCB /* WeeklyWeatherCollectionViewCell.swift */,
@@ -150,7 +145,6 @@
 		2DDC250A2AB328310091D3EB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2DF638A42AB575C3004A8DCB /* HomeViewViewModel.swift */,
 				2DF638A62AB575E5004A8DCB /* CurrentWeatherCVCViewModel.swift */,
 				2DF638A82AB575F8004A8DCB /* HourlyWeatherCVCViewModel.swift */,
 				2DF638AA2AB5760A004A8DCB /* WeeklyWeatherCVCViewModel.swift */,
@@ -243,7 +237,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					2DDC24F02AB327F10091D3EB = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -303,7 +297,6 @@
 				2DDC24F52AB327F10091D3EB /* AppDelegate.swift in Sources */,
 				2DF638802AB4526E004A8DCB /* WeeklyWeatherCollectionViewCell.swift in Sources */,
 				2DF638AB2AB5760A004A8DCB /* WeeklyWeatherCVCViewModel.swift in Sources */,
-				2DF638A02AB562F5004A8DCB /* CreateCollectionView.swift in Sources */,
 				2DF638822AB4528C004A8DCB /* HourlyWeatherCollectionViewCell.swift in Sources */,
 				2D805D8C2AC17D4800274731 /* LocationManager.swift in Sources */,
 				2D805D922AC1DAEF00274731 /* WeatherViewModel.swift in Sources */,
@@ -314,7 +307,6 @@
 				2DF6387E2AB45230004A8DCB /* CurrentWeatherCollectionViewCell.swift in Sources */,
 				2DF638B42AB72F98004A8DCB /* WeeklyWeather.swift in Sources */,
 				2DF638A92AB575F8004A8DCB /* HourlyWeatherCVCViewModel.swift in Sources */,
-				2DF638A52AB575C3004A8DCB /* HomeViewViewModel.swift in Sources */,
 				2DDC250F2AB32DBE0091D3EB /* NetworkManager.swift in Sources */,
 				2D805D8E2AC1CE0900274731 /* HomeView.swift in Sources */,
 			);
@@ -370,6 +362,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -384,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -430,6 +423,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -438,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

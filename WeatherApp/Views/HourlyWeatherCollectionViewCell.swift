@@ -82,7 +82,9 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
     //MARK: - Configure
     
     func configure(viewModel: HourlyWeatherCVCViewModel) {
-       
+        hourLabel.text = viewModel.hour
+        iconImage.downloaded(from: viewModel.iconUrl)
+        tempLabel.text = viewModel.tempC
     }
     
     required init?(coder: NSCoder) {

@@ -13,16 +13,14 @@ final class NetworkManager {
     
     private init() {}
     
+    //https://api.weatherapi.com/v1/forecast.json?key=31220cc3996d42daa9454459231809&q=Tashkent&days=10&aqi=no&alerts=no
+    
     let baseUrl = "https://api.weatherapi.com/v1"
     let path = "forecast.json"
     let apiKey = "31220cc3996d42daa9454459231809"
     
-    public private(set) var currentWeather: CurrentWeather?
-    public private(set) var hourlyWeather: [HourlyWeather] = []
-    public private(set) var weeklyWeather: [WeeklyWeather] = []
-    
     //MARK: - REQUEST WITH COORDINATE
-    public func getWeatherWithCoordinate(location: String, completion: @escaping() -> Void ) {
+    public func getWeatherWithCoordinate(location: String, completion: @escaping(Result<Weather, Error>) -> Void ) {
         let urlString = "\(baseUrl)/\(path)?key=\(apiKey)&q=\(location)&days=10&aqi=no&alerts=no"
         let url = URL(string: urlString)
         
@@ -49,36 +47,9 @@ final class NetworkManager {
                             decoder.keyDecodingStrategy = .convertFromSnakeCase
                             
                             let weather = try decoder.decode(Weather.self, from: data)
-                            self.currentWeather = CurrentWeather(
-                                name: weather.location.name,
-                                date: weather.location.localtime,
-                                iconImageUrl: weather.current.condition.icon,
-                                temp: "\(weather.current.tempC) C°",
-                                condition: weather.current.condition.text,
-                                wind: "\(weather.current.windKph) km/h",
-                                humidity: "\(weather.current.humidity) %",
-                                cloud: "\(weather.current.cloud) %")
-                            
-                            let hourlyWeather = weather.forecast.forecastday.first?.hour.map({HourlyWeather(
-                                hour: String($0.time.suffix(5)),
-                                iconUrl: "https://\($0.condition.icon.dropFirst(2))",
-                                tempC: "\($0.tempC.toInt() ?? 00)")}) ?? [HourlyWeather]()
-                            self.hourlyWeather = hourlyWeather
-                            
-                            let weeklyWeather = weather.forecast.forecastday.map({
-                                WeeklyWeather(
-                                    date: $0.date, 
-                                    maxMinTempC: "\($0.day.maxtempC.toInt() ?? 00)C°/\($0.day.mintempC.toInt() ?? 00)C°",
-                                    conditionText: $0.day.condition.text, 
-                                    conditionIconUrl: "https://\($0.day.condition.icon.dropFirst(2))")
-                            })
-                            self.weeklyWeather = weeklyWeather
-                            
-                            print(self.currentWeather!)
-                            print(self.hourlyWeather)
-                            print(self.weeklyWeather)
+                            completion(.success(weather))
                         } catch {
-                            print(error)
+                            completion(.failure(error))
                         }
                     }
                 } else {

@@ -45,7 +45,7 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .red
+        contentView.addBlurEffect(style: .light)
         contentView.layer.cornerRadius = 12
         
         setUpUI()
@@ -81,10 +81,10 @@ class HourlyWeatherCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Configure
     
-    func configure(viewModel: HourlyWeatherCVCViewModel) {
-        hourLabel.text = viewModel.hour
-        iconImage.downloaded(from: viewModel.iconUrl)
-        tempLabel.text = viewModel.tempC
+    func configure(model: HourlyWeather) {
+        hourLabel.text = model.hour
+        iconImage.downloaded(from: model.iconUrl)
+        tempLabel.text = model.tempC
     }
     
     required init?(coder: NSCoder) {

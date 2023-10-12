@@ -61,8 +61,9 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .blue
+        contentView.addBlurEffect(style: .light)
         contentView.layer.cornerRadius = 12
+        
         setupUI()
     }
     
@@ -71,7 +72,6 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
     private func setupUI() {
         contentView.addSubview(horizontalStack)
         iconLabelStack.addArrangedSubview(iconImage)
-        //riconLabelStack.addArrangedSubview(conditionLabel)
         
         horizontalStack.addArrangedSubview(dayLabel)
         horizontalStack.addArrangedSubview(tempLabel)
@@ -100,10 +100,10 @@ class WeeklyWeatherCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Configure
-    func configure(viewModel: WeeklyWeatherCVCViewModel) {
-        tempLabel.text = viewModel.tempC
-        dayLabel.text = viewModel.date
-        iconImage.downloaded(from: viewModel.iconUrl)
+    func configure(model: WeeklyWeather) {
+        tempLabel.text = model.maxMinTempC
+        dayLabel.text = model.date
+        iconImage.downloaded(from: model.conditionIconUrl)
     }
     
     required init?(coder: NSCoder) {

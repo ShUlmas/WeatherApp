@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 
+
 class LocationManager: NSObject {
     
     static let shared = LocationManager()
@@ -21,6 +22,10 @@ class LocationManager: NSObject {
             }
             locationFetchCompletion?(location)
         }
+    }
+    
+    func updateLocation(location: String) {
+        self.location = location
     }
     
     public func getCurrentLocation(completion: @escaping(String) -> Void) {

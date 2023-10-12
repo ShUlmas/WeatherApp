@@ -20,32 +20,31 @@ extension Double {
 }
 
 extension String {
-
+    
     func toDate(withFormat format: String = "MM-dd-yyyy")-> Date?{
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(identifier: "Asia/Tashkent")
         dateFormatter.locale = Locale(identifier: "uz")
         dateFormatter.calendar = Calendar(identifier: .gregorian)
         dateFormatter.dateFormat = format
         let date = dateFormatter.date(from: self)
-
+        
         return date
-
+        
     }
 }
 
 extension Date {
-
     func toString(withFormat format: String = "EEEE") -> String {
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "uz")
         dateFormatter.timeZone = TimeZone(identifier: "Asia/Tashkent")
         dateFormatter.calendar = Calendar(identifier: .persian)
         dateFormatter.dateFormat = format
         let str = dateFormatter.string(from: self)
-
+        
         return str
     }
 }
@@ -57,6 +56,21 @@ extension UIView {
             self.addSubview(view)
         }
     }
+    
+    func addBlurEffect(style: UIBlurEffect.Style) {
+        // Create a blur effect
+        let blurEffect = UIBlurEffect(style: style)
+        
+        // Create a blur effect view
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        
+        // Set the frame to match the view's bounds
+        blurEffectView.frame = self.bounds
+        
+        // Add the blur effect view as a subview, behind all other subviews
+        self.insertSubview(blurEffectView, at: 0)
+    }
+    
 }
 
 //MARK: - DOWNLOAD IMAGE
@@ -75,6 +89,7 @@ extension UIImageView {
             }
         }.resume()
     }
+    
     func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
         guard let url = URL(string: link) else { return }
         downloaded(from: url, contentMode: mode)

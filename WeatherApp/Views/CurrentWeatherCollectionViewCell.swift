@@ -68,8 +68,6 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .green
-        contentView.layer.cornerRadius = 12
         setUpConstraints()
     }
     
@@ -122,15 +120,15 @@ class CurrentWeatherCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: - Configure
-    func configure(viewModel: CurrentWeatherCVCViewModel) {
-        regionLabel.text = viewModel.locationName
-        conditionLabel.text = viewModel.conditionLabel
-        conditionImage.downloaded(from: viewModel.conditionIcon)
-        dateLabel.text = viewModel.date
-        tempLabel.text = viewModel.tempC
-        windInfoView.configure(infoText: viewModel.windKph)
-        rainInfoView.configure(infoText: viewModel.humidity)
-        cloudInfoView.configure(infoText: viewModel.cloud)
+    func configure(model: CurrentWeather) {
+        regionLabel.text = model.name
+        conditionLabel.text = model.condition
+        conditionImage.downloaded(from: model.iconImageUrl)
+        dateLabel.text = model.date
+        tempLabel.text = model.temp
+        windInfoView.configure(infoText: model.wind)
+        rainInfoView.configure(infoText: model.humidity)
+        cloudInfoView.configure(infoText: model.cloud)
     }
 
     required init?(coder: NSCoder) {
@@ -162,7 +160,7 @@ class ImageAndLabelView: UIView {
         self.label.text = info
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 12
-        backgroundColor = .systemBackground
+        backgroundColor = .white
         setUpConstraints()
     }
     
